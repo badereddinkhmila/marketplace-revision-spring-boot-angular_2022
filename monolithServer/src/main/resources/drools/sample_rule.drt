@@ -1,0 +1,27 @@
+template header
+id
+type
+ruleWhen
+ruleThen
+ruleOrder
+
+package drools;
+
+import com.ecommerce.marketplace.Entity.Product
+import com.ecommerce.marketplace.Entity.Category;
+import org.slf4j.Logger;
+
+global org.slf4j.Logger log;
+
+template "product discount"
+
+rule "rule_@{id}_@{type}" salience @{ruleOrder}
+    when
+        product : Product(@{ruleWhen})
+    then
+        modify(product){
+            setDiscount(@{ruleThen});
+        }
+end
+
+end template

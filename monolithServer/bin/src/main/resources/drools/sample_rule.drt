@@ -1,0 +1,22 @@
+template header
+id
+type
+ruleWhen
+ruleThen
+ruleOrder
+
+package drools;
+
+import com.ecommerce.marketplace.Entity.Product
+import com.ecommerce.marketplace.Entity.Category;
+
+template "product discount"
+
+rule "rule_@{id}_@{type}" salience @{ruleOrder}
+    when
+        product : Product(price > 20)
+    then
+        product.discount == 10
+end
+
+end template

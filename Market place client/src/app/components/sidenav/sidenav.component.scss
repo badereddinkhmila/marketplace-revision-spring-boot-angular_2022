@@ -1,0 +1,94 @@
+
+mat-toolbar {
+  background: white;
+  color: #3a3a3a;
+  display: flex;
+  justify-content: space-between;
+
+  app-search {
+    margin: auto;
+    width: 50%;
+  }
+
+  .menu {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+
+    .cart-icon {
+      width: 45px;
+      height: 45px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      .shopping-icon {
+        font-size: 28px;
+      }
+
+      .item-count {
+        position: absolute;
+        font-size: 13px;
+        font-weight: bold;
+        top: 6px;
+        left: 21px;
+      }
+    }
+
+    small {
+      font-size: small;
+    }
+  }
+}
+
+mat-sidenav {
+  margin: 30px 16px 30px 0;
+  width: 200px;
+  padding: 0;
+  border-right: none;
+  background: white;
+  color: #3a3a3a;
+  text-align: center;
+
+  mat-expansion-panel {
+    .mat-expansion-panel-header {
+      padding: 0 10px 0 10px;
+
+      &.mat-expanded {
+        height: 50px;
+      }
+
+      &:hover {
+        background: none;
+      }
+    }
+
+    .expantion-list-item {
+      height: 40px;
+      display: flex;
+      align-items: center;
+
+      span {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 65px);
+  overflow: hidden;
+  background-color: #e7e6e6;
+
+  .content {
+    height: calc(100vh - 98px);
+    margin-top: 16px;
+    margin-bottom: 0;
+    font-size: 2rem;
+    overflow-y: auto;
+  }
+}

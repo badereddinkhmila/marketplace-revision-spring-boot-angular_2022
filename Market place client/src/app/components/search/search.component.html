@@ -1,0 +1,20 @@
+<div class="input-group">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Chercher..."
+    aria-label="searching box"
+    aria-describedby="search"
+    [formControl]="myControl"
+    [matAutocomplete]="auto"
+  />
+  <span class="input-group-text" id="search"
+    ><mat-icon class="material-icons-outline">search</mat-icon></span
+  >
+
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+</div>

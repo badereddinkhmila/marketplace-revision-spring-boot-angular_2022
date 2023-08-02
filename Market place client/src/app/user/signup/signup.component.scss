@@ -1,0 +1,24 @@
+.available {
+  $main-color: yellowgreen;
+
+  //input outline color
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: $main-color !important;
+    opacity: 1 !important;
+  }
+
+  //mat-input focused color
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: $main-color !important;
+  }
+
+  // mat-input carent color
+  .mat-input-element {
+    caret-color: $main-color !important;
+  }
+
+  // mat-label focused style
+  .mat-form-field.mat-focused .mat-form-field-label {
+    color: $main-color !important;
+  }
+}

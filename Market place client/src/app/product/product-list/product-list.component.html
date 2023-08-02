@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <swiper (slideChange)="onSlideChange()" [config]="config">
+    <ng-template *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9]" swiperSlide>
+      <!--<app-product-item></app-product-item>-->
+      Slide {{ i }}
+    </ng-template>
+  </swiper>
+  <div class="row d-flex justify-content-center">
+    <div
+      *ngFor="let i of [1, 2, 3, 4, 5, 6]"
+      class="col-11 col-sm-5 col-md-4 col-xl-3"
+    >
+      <app-product-item></app-product-item>
+    </div>
+  </div>
+  <app-product-image-preview></app-product-image-preview>
+</div>

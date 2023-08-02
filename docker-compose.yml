@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+
+  marketplace:
+    build:
+      context: ./monolithServer
+    container_name: ecommerce_application
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - market_place_db
+    command: [ "./wait-for-it.sh","market_place_db:5432" ]
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://market_place_db:5432/ecommerce_spring_app
+      - SPRING_DATASOURCE_USERNAME=badreddine
+      - SPRING_DATASOURCE_PASSWORD=baderbadrouch15
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  market_place_db:
+    image: postgres
+    container_name: ecommerce_db
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - website_data:/var/lib/postgres/data
+    environment:
+      - POSTGRES_PASSWORD=baderbadrouch15
+      - POSTGRES_USER=badreddine
+      - POSTGRES_DB=ecommerce_spring_app
+
+  market_place_ui:
+    build:
+      context: ./Market place client
+    container_name: market_place_ui
+    ports:
+      - "80:80"
+    links:
+      - marketplace
+volumes:
+  website_data:

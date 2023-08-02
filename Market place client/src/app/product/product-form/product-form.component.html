@@ -1,0 +1,131 @@
+<div class="container-fluid d-flex justify-content-center align-items-center">
+  <mat-card class="col-12 col-md-8 m-2 text-center shadow">
+    <mat-card-header class="justify-content-center">
+      <mat-card-title>Create a new product</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()" [formGroup]="productForm">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Name</mat-label>
+          <input
+            formControlName="nameProduct"
+            matInput
+            placeholder="Enter product name..."
+            required
+            type="text"
+          />
+          <mat-icon matSuffix></mat-icon>
+          <mat-error *ngIf="f['nameProduct'].errors"
+            >{{ getErrorMessage() }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Description</mat-label>
+          <textarea
+            formControlName="description"
+            matInput
+            placeholder="Enter product description..."
+            required
+            type="text"
+          ></textarea>
+          <mat-icon matSuffix></mat-icon>
+          <mat-error *ngIf="f['description'].errors">{{
+            getErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-50 p-1">
+          <mat-label>Price</mat-label>
+          <input
+            formControlName="price"
+            matInput
+            min="0.00"
+            placeholder="Enter product price..."
+            required
+            step="0.01"
+            type="number"
+          />
+          <mat-icon matSuffix></mat-icon>
+          <mat-error *ngIf="f['price'].errors">{{
+            getErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-50 p-1">
+          <mat-label>Quantity</mat-label>
+          <input
+            formControlName="quantity"
+            matInput
+            min="0"
+            placeholder="Enter product's current quantity..."
+            required
+            step="1"
+            type="number"
+          />
+          <mat-icon matSuffix></mat-icon>
+          <mat-error *ngIf="f['quantity'].errors">{{
+            getErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+        <div class="w-100 pt-2 pb-2 d-flex justify-content-start">
+          <mat-label class="me-3">Available</mat-label>
+          <mat-checkbox formControlName="isAvailable" required></mat-checkbox>
+        </div>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Category</mat-label>
+          <input
+            formControlName="category_id"
+            matInput
+            placeholder="Enter product's current quantity..."
+            required
+            type="text"
+          />
+          <mat-icon matSuffix></mat-icon>
+          <mat-error *ngIf="f['quantity'].errors">{{
+            getErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+        <div class="w-100">
+          <div class="file-drop-area">
+            <span class="choose-file-button"
+              ><mat-icon class="material-icons-outlined"
+                >add_photo_alternate</mat-icon
+              ></span
+            >
+            <input
+              (change)="fileChangeEvent($event)"
+              accept="image/png,image/jpeg"
+              required
+              type="file"
+            />
+          </div>
+          <div *ngIf="productImages.length > 0" class="row p-2">
+            <div *ngFor="let image of croppedImages" class="col-4">
+              <div class="col-12 d-flex">
+                <app-product-image-preview
+                  [image]="image.product_cropped_image"
+                  [id]="image.id"
+                  (editEvent)="onImageEdit(image.id)"
+                  (deleteEvent)="onImageDelete(image.id)"
+                ></app-product-image-preview>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          (click)="openDialog()"
+          class="w-50 mt-1 mb-1"
+          color="accent"
+          mat-flat-button
+          type="button"
+        >
+          <span>Crop</span>
+          <mat-icon class="material-icons-outlined">crop</mat-icon>
+        </button>
+        <mat-divider></mat-divider>
+        <button class="w-100 m-1" color="primary" mat-flat-button type="submit">
+          <span>Create</span>
+          <mat-icon class="material-icons-outlined">save</mat-icon>
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

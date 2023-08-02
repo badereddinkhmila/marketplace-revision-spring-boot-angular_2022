@@ -1,0 +1,7 @@
+FROM openjdk:17-jdk-alpine
+
+WORKDIR /app
+
+COPY ./target/MarketplaceApplication-0.0.1-SNAPSHOT.jar ./
+
+ENTRYPOINT ["java","-jar","MarketplaceApplication-0.0.1-SNAPSHOT.jar"]

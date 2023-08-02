@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <h1 class="title">Users List</h1>
+  <div class="d-flex justify-content-center align-items-center w-100 h-100">
+    <mat-spinner [ngClass]="{'d-none':!isFetching}"></mat-spinner>
+    <mat-grid-list [ngClass]="{'d-none':isFetching}" cols="2" gutterSize="10">
+      <a *ngFor="let user of users" href="/users">
+        <mat-grid-tile>
+          <mat-card class="w-100">
+            <h4>{{user.username}}</h4>{{user.email}}<span></span>
+            <!--<img [src]="user.avatar" alt="#" mat-card-avatar>-->
+          </mat-card>
+        </mat-grid-tile>
+      </a>
+    </mat-grid-list>
+  </div>
+</div>

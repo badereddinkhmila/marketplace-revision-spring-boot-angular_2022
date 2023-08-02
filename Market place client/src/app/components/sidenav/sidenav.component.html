@@ -1,0 +1,141 @@
+<mat-toolbar class="fixed">
+  <button
+    (click)="sidenav.toggle()"
+    *ngIf="sidenav.mode === 'over'"
+    mat-icon-button
+  >
+    <mat-icon *ngIf="!sidenav.opened"> menu_open</mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> close</mat-icon>
+  </button>
+  <img alt="Market Place" src="/assets/crown.svg"/>
+  <app-search></app-search>
+  <div class="menu">
+    <button mat-icon-button>
+      <mat-icon class="material-icons-outlined">notifications</mat-icon>
+    </button>
+    <mat-divider [vertical]="true" class="h-50"></mat-divider>
+    <button class="cart-icon" mat-icon-button>
+      <mat-icon class="material-icons-outlined shopping-icon"
+      >shopping_bag
+      </mat-icon
+      >
+      <span class="item-count">{{ cartItemsCount }}</span>
+    </button>
+    <mat-divider [vertical]="true" class="h-50 me-2"></mat-divider>
+    <a *ngIf="!isAuthenticated" [routerLink]="['/login']"><small>Se connecter</small></a>
+    <a (click)="logout()" *ngIf="isAuthenticated" mat-button><small>Se deconnecter</small></a>
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z3 fixed">
+    <mat-nav-list dense>
+      <mat-accordion>
+        <div mat-subheader>Market place</div>
+        <mat-divider></mat-divider>
+        <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <i class="bi bi-box-seam" style="font-size: 20px"></i>
+              <span>Produits</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-divider></mat-divider>
+          <div class="expantion-list-item">
+            <mat-icon matListIcon>add</mat-icon>
+            <span mat-line>Nouveau produit</span>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="expantion-list-item">
+            <mat-icon matListIcon>list</mat-icon>
+            <span>Touts les produits</span>
+          </div>
+        </mat-expansion-panel>
+        <mat-divider></mat-divider>
+        <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon class="material-icons-outlined" matListIcon
+              >category
+              </mat-icon
+              >
+              <span>Categories</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-divider></mat-divider>
+          <div class="expantion-list-item">
+            <mat-icon matListIcon>add</mat-icon>
+            <span mat-line>Nouvelle categorie</span>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="expantion-list-item">
+            <mat-icon matListIcon>list</mat-icon>
+            <span>Toutes les categories</span>
+          </div>
+        </mat-expansion-panel>
+        <mat-divider></mat-divider>
+        <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon class="material-icons-outlined" matListIcon
+              >local_shipping
+              </mat-icon
+              >
+              <span>Fournisseur</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-divider></mat-divider>
+          <div class="expantion-list-item">
+            <mat-icon matListIcon>add</mat-icon>
+            <span mat-line>Ajout d'un fournisseur</span>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="expantion-list-item">
+            <mat-icon matListIcon>list</mat-icon>
+            <span>Touts les fournisseurs</span>
+          </div>
+        </mat-expansion-panel>
+        <mat-divider></mat-divider>
+        <div mat-subheader>Validation</div>
+        <mat-divider></mat-divider>
+        <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon class="material-icons-outlined" matListIcon
+              >shopping_cart
+              </mat-icon
+              >
+              <span>Validation</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-divider></mat-divider>
+          <div class="expantion-list-item">
+            <mat-icon matListIcon>list</mat-icon>
+            <span>Touts les produits</span>
+          </div>
+          <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon class="material-icons-outlined" matListIcon
+                >shopping_cart
+                </mat-icon
+                >
+                <span>Validation</span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <div class="expantion-list-item">
+              <mat-icon matListIcon>list</mat-icon>
+              <span>Touts les produits</span>
+            </div>
+          </mat-expansion-panel>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content scrollbar">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
